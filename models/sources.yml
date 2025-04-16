@@ -5,11 +5,23 @@ sources:
       description: This is a replica of the Postgres database used by our app
       database: raw
       schema: jaffle_shop
+      freshness:
+        warn_after: {count: 24, period: hour}
+        error_after: {count: 1, period: day}
+      loaded_at_field: etl_loaded_at
       tables:
           - name: customers
             description: One record per customer.
+            freshness: null
           - name: orders
             description: One record per order. Includes cancelled and deleted orders.
+          #  freshness:
+          #    warn_after: {count: 24, period: hour}
+          #    error_after: {count: 1, period: day}
+          #  loaded_at_field: etl_loaded_at # Freshness now declared at Schema level.
+            
+
+
     - name: stripe
       description: This is a replica of the Stripe schema
       database: raw
@@ -17,3 +29,7 @@ sources:
       tables:
         - name: payment
           description: One record per Stripe payment transaction.
+          freshness:
+            warn_after: {count: 24, period: hour}
+            error_after: {count: 2, period: day}
+          loaded_at_field: batched_at
