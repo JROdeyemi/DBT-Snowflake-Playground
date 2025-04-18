@@ -13,7 +13,7 @@ models:
         description: NULL when a customer has not yet placed an order.
 
   - name: stg_customers
-    description: This model cleans up customer data
+    description: This model cleans up customer data and creates one unique customer per row.
     columns:
       - name: customer_id
         description: Primary key
@@ -22,7 +22,7 @@ models:
           - not_null
 
   - name: stg_orders
-    description: This model cleans up order data
+    description: This model cleans up order data and creates one order per row
     columns:
       - name: order_id
         description: Primary key
@@ -30,10 +30,12 @@ models:
           - unique
           - not_null
       - name: status
+        description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
       - name: customer_id
+        description: Foreign key to stg_customers.customer_id
         tests:
           - not_null
           - relationships:

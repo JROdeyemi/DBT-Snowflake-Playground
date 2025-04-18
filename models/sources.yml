@@ -11,15 +11,16 @@ sources:
       loaded_at_field: etl_loaded_at
       tables:
           - name: customers
-            description: One record per customer.
+            description: Raw customer data and contains one record per customer.
             columns:
               - name: ID
+                description: Primary key for customers data
                 tests:
                   - unique
                   - not_null
             freshness: null
           - name: orders
-            description: One record per order. Includes cancelled and deleted orders.
+            description: Raw orders data. Each record is an order. Includes cancelled and deleted orders.
             columns:
               - name: ID
                 tests:
@@ -33,8 +34,7 @@ sources:
 
 
     - name: stripe
-      description: This is a replica of the Stripe schema
-      database: raw
+      description: This is a clone of the stripe schema of the Postgres Database
       schema: stripe
       tables:
         - name: payment
