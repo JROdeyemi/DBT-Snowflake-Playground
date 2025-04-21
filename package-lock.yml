@@ -1,8 +1,8 @@
 packages:
-  - name: audit_helper
-    package: dbt-labs/audit_helper
-    version: 0.12.1
+  - name: snowflake_spend
+    package: gitlabhq/snowflake_spend
+    version: 1.2.0
   - name: dbt_utils
-    package: dbt-labs/dbt_utils
-    version: 1.3.0
-sha1_hash: 6c69af0d1eb6203cda329302084c58b4589c1b2a
+    package: fishtown-analytics/dbt_utils
+    version: 0.7.0
+sha1_hash: 57ab66f02cf967facd4e9e4284fc187028729cb5
