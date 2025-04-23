@@ -41,3 +41,12 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+seeds:
+  - name: employees
+    description: A manual map of employees to customers
+    columns:
+      - name: employee_id
+        tests:
+          - unique
+          - not_null
