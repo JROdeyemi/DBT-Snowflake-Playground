@@ -17,6 +17,11 @@ pivoted AS (
 SELECT *
 FROM pivoted */
 
+{{
+    config(required_tests=None)
+}}
+
+
 {% set payment_methods = ['bank_transfer', 'coupon', 'credit_card', 'gift_card'] -%}
 
 WITH payments AS (

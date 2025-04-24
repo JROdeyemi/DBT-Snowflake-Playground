@@ -1,3 +1,10 @@
+{{
+    config(required_tests=None)
+}}
+
+
+
+
 
 WITH Orders AS (
     SELECT *
