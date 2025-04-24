@@ -39,6 +39,10 @@ models:
   jaffle_shop:
     marts:
       +materialized: table
+      # All models should have unique and not_null
+      +required_tests: 
+        "unique.*|not_null": 1
+        "relationship.*": 1
     staging:
       +materialized: view
 

@@ -9,6 +9,9 @@ models:
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref{'stg_customers'}
+              field:  customer_id
       - name: first_order_date
         description: NULL when a customer has not yet placed an order.
 
@@ -41,6 +44,15 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+  - name: orders_by_customer_9
+    description: Trash model to experiment Advanced testing, Tracks the total orders each customer has made
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer that has placed an order
+        tests:
+          - unique 
+          - not_null 
+
   - name: fct_orders
     description: Matches each order to customer
     access: public
