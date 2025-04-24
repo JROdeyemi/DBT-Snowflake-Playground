@@ -19,7 +19,7 @@ fct_orders AS (
     SELECT o.Order_ID,
         o.Customer_ID,
         o.order_date,
-        COALESCE(op.Amount, 0) AS Amount
+        COALESCE(op.Amount, 0) AS Total
     FROM Orders AS o 
     LEFT JOIN Order_Payments AS op 
         ON o.Order_ID = op.OrderID

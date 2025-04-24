@@ -1,0 +1,11 @@
+groups:
+  - name: finance
+    owner:
+      name: Joshua Odeyemi
+      email: joshodeyemi20@gmail.com
+      linkedin: https://www.linkedin.com/in/joshodeyemi
+  - name: product
+    owner:
+      name: Joshua Richard
+      email: richardsson360@gmail.com
+      github: https://www.github.com/JROdeyemi

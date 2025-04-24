@@ -41,6 +41,46 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+  - name: fct_orders
+    description: Matches each order to customer
+    access: public
+    latest_version: 1
+    config:
+      contract:
+        enforced: true
+      group: finance
+    columns:
+      - name: order_id
+        description: Unique identifier for each order
+        data_type: number
+        constraints:
+          - type: not_null
+      - name: customer_id
+        description: Identifier for each customer. Not unique, as customers can have multiple orders
+        data_type: number
+        constraints:
+          - type: not_null 
+      - name: order_date
+        description: Date at which the customer placed the specific order
+        data_type: date
+        constraints:
+          - type: not_null 
+      - name: amount
+        description: The amount at which order was sold to the customer
+        data_type: number
+        constraints:
+          - type: not_null
+    versions:
+      - v: 1
+        config:
+          alias: fct_orders
+      - v: 2
+        columns:
+          - name: Total
+            description: The total amount paid by the customer for the order
+            data_type: number
+          - include: all
+            exclude: [amount]
 
 seeds:
   - name: employees
