@@ -21,7 +21,7 @@ Order_Payments AS (
     GROUP BY OrderID
 )
 ,
-fct_orders AS (
+final AS (
     SELECT o.Order_ID,
         o.Customer_ID,
         o.order_date,
@@ -32,4 +32,4 @@ fct_orders AS (
 )
 
 SELECT *
-FROM fct_orders
+FROM final

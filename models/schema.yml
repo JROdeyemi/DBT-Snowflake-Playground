@@ -12,6 +12,9 @@ models:
           - relationships:
               to: ref{'stg_customers'}
               field:  customer_id
+          - dbt_utils.cardinality_equality:
+              field: customer_id
+              to: ref('stg_customers')
       - name: first_order_date
         description: NULL when a customer has not yet placed an order.
 
@@ -55,6 +58,9 @@ models:
 
   - name: fct_orders
     description: Matches each order to customer
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "amount > 5"
     access: public
     latest_version: 1
     config:
@@ -84,6 +90,10 @@ models:
           - type: not_null
         tests:
           - assert_column_is_greater_than_five
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              row_condition: "order_id is not null"
+              strictly: False
     versions:
       - v: 1
         config:
