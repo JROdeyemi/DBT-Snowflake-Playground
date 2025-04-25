@@ -82,6 +82,8 @@ models:
         data_type: number
         constraints:
           - type: not_null
+        tests:
+          - assert_column_is_greater_than_five
     versions:
       - v: 1
         config:
