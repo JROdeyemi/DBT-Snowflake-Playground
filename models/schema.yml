@@ -77,7 +77,17 @@ models:
         description: Identifier for each customer. Not unique, as customers can have multiple orders
         data_type: number
         constraints:
-          - type: not_null 
+          - type: not_null
+        tests:
+          - unique:
+              config:
+                where: "order_date > '2018-03-01'"
+                severity: warn
+                error_if: ">30"
+                warn_if: ">5"
+                limit: 10
+                store_failures: true
+                schema: test_failures
       - name: order_date
         description: Date at which the customer placed the specific order
         data_type: date
