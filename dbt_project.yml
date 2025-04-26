@@ -46,4 +46,9 @@ models:
     staging:
       +materialized: view
 
+tests:
+  jaffle_shop:
+    +severity: warn
+    +store_failures: true
+
 

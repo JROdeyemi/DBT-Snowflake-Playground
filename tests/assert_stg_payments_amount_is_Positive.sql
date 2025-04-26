@@ -1,3 +1,11 @@
+{{
+    config(
+        store_failures = true
+    )
+}}
+
+
+
 WITH payments AS (
     SELECT *
     FROM {{ ref('stg_stripe__payments') }}

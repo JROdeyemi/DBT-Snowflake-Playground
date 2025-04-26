@@ -44,3 +44,27 @@ sources:
             warn_after: {count: 24, period: hour}
             error_after: {count: 2, period: day}
           loaded_at_field: batched_at
+          columns:
+            - name: ID
+              description: Unique identifier for each payment made via stripe
+              tests:
+                - unique:
+                    config:
+                      severity: error
+                      error_if: ">100"
+                      warn_if: ">10"
+            - name: PaymentMethod
+              description: The medium through which the payment was processed or received
+              tests:
+                - not_null:
+                    config:
+                      where: "status = 'success'"
+            - name: Status
+              description: The current state of the transaction
+              tests:
+                - accepted_values:
+                    values: ['success', 'fail']
+                    config:
+                      limit: 10
+                      store_failures: true
+
